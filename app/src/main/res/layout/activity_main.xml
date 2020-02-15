@@ -4,54 +4,216 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/whd2"
+    android:scaleType="centerCrop"
     tools:context=".MainActivity">
 
     <ImageView
-        android:src="@drawable/whd"
-        android:scaleType="centerCrop"
+        android:id="@+id/wallpaper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/whd2"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
+        android:id="@+id/start_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="221dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_anchor="@id/bottomSheet">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/blurView1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#E6E6E6">
 
-        </androidx.viewpager.widget.ViewPager>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E9E9E9">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginBottom="30dp"
+                        app:cardElevation="8dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#00FFFFFF"
+                            android:drawableStart="@drawable/ic_search_24px"
+                            android:drawablePadding="8dp"
+                            android:hint="Search the web and your stuff"
+                            android:inputType="textFilter"
+                            android:textSize="12sp"
+                            tools:ignore="Autofill" />
+
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#B3FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="18dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="28dp"
+                                    android:text="My Apps"
+                                    android:textColor="?android:attr/textColorPrimary"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:id="@+id/show_all_apps"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end|center_vertical"
+                                    android:layout_marginEnd="28dp"
+                                    app:cardCornerRadius="12dp"
+                                    app:cardElevation="1dp">
+
+                                    <TextView
+                                        android:id="@+id/show_all_apps_label"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="2dp"
+                                        android:layout_marginEnd="8dp"
+                                        android:layout_marginBottom="2dp"
+                                        android:text="Show All"
+                                        android:textColor="?android:attr/textColorPrimary"
+                                        android:textSize="12sp"
+                                        android:textStyle="normal" />
+                                </com.google.android.material.card.MaterialCardView>
+
+                            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/drawerGrid"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:visibility="visible"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:spanCount="5"
+                                tools:listitem="@layout/item_app" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="#C4C4C4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="18dp"
+                            android:text="Recent"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recentApps"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="20dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
 
     </LinearLayout>
 
-    <FrameLayout
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomSheet"
         style="@style/Widget.Design.BottomSheet.Modal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:ignore="PrivateResource">
 
-        <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurView"
-            app:blurOverlayColor="#9AFFFFFF"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="56dp"
+                android:background="@drawable/slider_up" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/drawerGrid"
-                android:layout_width="match_parent"
+                android:id="@+id/favAppBottom"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="56dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_app_fav" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wallpaperBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="56dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="5"
-                tools:listitem="@layout/item_app"/>
+                app:spanCount="4"
+                tools:listitem="@layout/item_wallpaper" />
 
-        </eightbitlab.com.blurview.BlurView>
+        </LinearLayout>
 
-    </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
