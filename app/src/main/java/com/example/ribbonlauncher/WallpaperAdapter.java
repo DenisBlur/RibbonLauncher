@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
+
 
 public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.ViewHolder> {
 
@@ -34,9 +34,16 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WallpaperObject wallpaperObject = wallpaperObjectList.get(position);
-        Glide.with(mContext).load(wallpaperObject.getURL_image()).into(holder.mImage);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        final WallpaperObject wallpaperObject = wallpaperObjectList.get(position);
+//        Glide.with(mContext).load(wallpaperObject.getURL_image()).into(holder.mImage);
+        holder.mImage.setImageDrawable(wallpaperObject.getImage());
+        holder.appLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Glide.with(mContext).load(wallpaperObject.getURL_image()).into(mWallpaper);
+            }
+        });
     }
 
     @Override
@@ -47,11 +54,13 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImage;
+        private MaterialCardView appLayout;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mImage = itemView.findViewById(R.id.mImage);
+            appLayout = itemView.findViewById(R.id.appLayout);
 
         }
     }
