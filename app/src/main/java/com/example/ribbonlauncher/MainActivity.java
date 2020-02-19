@@ -181,16 +181,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (Objects.equals(intent.getAction(), Intent.ACTION_PACKAGE_REMOVED)) {
-                    Toast.makeText(context, "Nooooooo!", Toast.LENGTH_SHORT).show();
-                    appAdapter.notifyItemRemoved(UNINSTALL_POS_ALL_APPS);
-                    if (favAppList.size() > 1) {
+                    getInstalledAppList(0);
+                    if (favAppList.size() > 0) {
                         favAppList.remove(UNINSTALL_POS_FAV_APPS);
                         Objects.requireNonNull(mFavAppBottom.getAdapter()).notifyItemRemoved(UNINSTALL_POS_FAV_APPS);
                     } else {
                         favAppList = new ArrayList<>();
                         mFavAppBottom.setAdapter(new AppAdapter(mContext, favAppList));
                     }
-                    UNINSTALL_POS_ALL_APPS = -1;
                     UNINSTALL_POS_FAV_APPS = -1;
                     Collections.sort(installedAppList, new Comparator<AppObject>() {
                         @Override
@@ -198,6 +196,9 @@ public class MainActivity extends AppCompatActivity {
                             return o1.getName().compareToIgnoreCase(o2.getName());
                         }
                     });
+                } else if(Objects.equals(intent.getAction(), Intent.ACTION_PACKAGE_ADDED)) {
+                    Toast.makeText(context, "oh yeah! It`s:" + intent.getDataString(), Toast.LENGTH_SHORT).show();
+                    getInstalledAppList(0);
                 }
             }
         };
